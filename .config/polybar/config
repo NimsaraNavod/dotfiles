@@ -9,6 +9,7 @@ alert = ${xrdb:color3:#222}
 
 [bar/sleek]
 ;monitor = ${env:MONITOR:HDMI-1}
+wm-restack = bspwm
 width = 100%
 height = 20
 ;offset-x = 1%
@@ -241,11 +242,10 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
-date-alt = " %Y-%m-%d"
-
+date = 
+date-alt = "%b %d, %G | %A | Week %W"
 time = %H:%M
-time-alt = %H:%M:%S
+time-alt = 
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
