@@ -10,6 +10,10 @@ super + Return
 super + @space
 	dmenu_run
 
+# launch emoji picker
+super + shift + Return
+	emoji-picker
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -18,9 +22,16 @@ super + Escape
 super + shift + b
 	walrand
 
+# toggle compositor
+super + shift + p 
+	toggle-compositor
 # browser
 super + b
-	firefox
+	firefox-developer-edition
+# surf browser
+super + s
+	tabbed surf -e
+
 #
 # bspwm hotkeys
 #

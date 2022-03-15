@@ -1,11 +1,11 @@
 [colors]
-background-alt = #444
 background = ${xrdb:color0:#222}
 foreground = ${xrdb:color7:#222}
 foreground-alt = ${xrdb:color7:#222}
 primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
+background-alt = #444
 
 [bar/sleek]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -32,14 +32,19 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
+font-0 = FiraCode Nerd Font:style=Regular:size=10;2
+; fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
+font-3 = "Noto Color Emoji:pixelsize=10:style=Regular;1"
+font-4 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
+font-5 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
+font-6 = "Font Awesome 5 Brands:pixelsize=8;1"
 
 modules-left = bspwm i3
-modules-center = mpd date
-modules-right = filesystem xbacklight 
-;alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature powermenu
+modules-center = date
+modules-right = uptime network-usage network-traffic toggle-picom powermenu 
+;filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature powermenu
 
 tray-position = right
 tray-padding = 0
@@ -247,7 +252,7 @@ date-alt = "%b %d, %G | %A | Week %W"
 time = %H:%M
 time-alt = 
 
-format-prefix = 
+#format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 ; format-underline = #0a6cf5
 
@@ -359,6 +364,34 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/toggle-picom]
+type = custom/text
+content = "" 
+;""
+; exec= ~/.config/polybar/scripts/toggle-picom
+click-left = toggle-compositor 
+; tail = true
+
+[module/network-traffic]
+type = custom/script
+exec = /home/nimz/dev/c++/recetran/rectra
+;~/.config/polybar/scripts/network-traffic
+tail = true
+format-prefix = "李 " 
+; interval = 1 李
+
+[module/uptime]
+type =custom/script
+exec = uptime | awk -F "," '/1/ {print $1}' | awk -F " " '/1/ {print $3}'
+format-prefix = "鬒 "  
+interval = 60
+
+[module/network-usage]
+type = custom/script
+exec = vnstat --oneline | awk -F ";" '/1/ {printf $6" / "} {print $11}'
+format-prefix = " "
+interval = 30
 
 [module/powermenu]
 type = custom/menu
